@@ -1,7 +1,8 @@
 <template>
   <div class="item">
-    <span class="text">{{ item.text }}</span> 
     <span class="score">{{ item.score }} / 10</span>
+    <span class="text">{{ item.text }}</span> 
+    <slot></slot>
   </div>
 </template>
 
@@ -30,7 +31,7 @@ export default {
 }
 
 .text {
-
+  text-align: center;
 }
 .score {
   border-radius: 1rem;

@@ -3,25 +3,25 @@
     <h1>{{ title }}</h1>
 
     <form @submit.prevent="addList">
-			<input
-			  type="text"
-			  placeholder="Restaurant"
-			  v-model="newItem.text"
-			/>
       <input
-			  type="number"
+        type="text"
+        placeholder="Restaurant"
+        v-model="newItem.text"
+      />
+      <input
+        type="number"
         min="0" max="10"
-			  placeholder="Score"
-			  v-model="newItem.score"
-			/>
-			<button>Add</button>
-		</form>
+        placeholder="Score"
+        v-model="newItem.score"
+      />
+      <button>Add</button>
+    </form>
 
     <draggable v-model="list" group="score" @start="drag=true" @end="drag=false">
       <div v-for="item in list" :key="item.id">
-        <item :item="item"></item>
-        
-        <button @click="removeList(item)">x</button>
+        <item class="item" :item="item">
+          <button class="remove" @click="removeList(item)">x</button>
+        </item>
       </div>
     </draggable>
   </div>
@@ -58,17 +58,31 @@ export default {
     },
   methods: {
     addList() {
-      return store.commit('addList', this.newItem)
+      store.commit('addList', this.newItem)
       this.newItem = { text: '', score: null }
     },
     removeList(id) {
-			store.commit('removeList', id)
-		}
+      store.commit('removeList', id)
+    }
 
   }
 }
 </script>
 
 <style scoped>
+.item {
+  margin: 1rem auto;
+}
 
+.remove {
+  cursor: pointer;  
+  border-radius: 1rem;
+  background-color: darkgray;
+  color: white;
+  padding: 0.2rem 1rem;
+}
+
+.remove:hover {
+  background-color: lightgrey;
+}
 </style>
