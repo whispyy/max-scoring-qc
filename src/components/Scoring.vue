@@ -3,23 +3,31 @@
     <h1>{{ title }}</h1>
 
     <form @submit.prevent="addList">
-      <input
-        type="text"
-        placeholder="Restaurant"
-        v-model="newItem.text"
-      />
-      <input
-        type="number"
-        min="0" max="10"
-        placeholder="Score"
-        v-model="newItem.score"
-      />
+      <div>
+        <input
+          type="text"
+          placeholder="Title"
+          v-model="newItem.title"
+        />
+        <input
+          type="number"
+          min="0" max="10"
+          placeholder="Score"
+          v-model="newItem.score"
+        />
+      </div>
+      <div>
+        <textarea
+          placeholder="Description"
+          v-model="newItem.desc">
+        </textarea>
+      </div>
       <button>Add</button>
     </form>
 
     <draggable v-model="list" group="score" @start="drag=true" @end="drag=false">
       <div v-for="item in list" :key="item.id">
-        <item class="item" :item="item">
+        <item :item="item">
           <button class="remove" @click="removeList(item)">x</button>
         </item>
       </div>
@@ -29,7 +37,7 @@
 
 <script>
 import draggable from 'vuedraggable'
-import item from '@/components/utils/item'
+import { item } from '@/components/list'
 import store from '../store'
 
 export default {
@@ -43,7 +51,7 @@ export default {
   },
   data() {
     return { 
-      newItem : { text: '', score: null }
+      newItem : { title: '', desc: '', score: null }
     }
   },
   computed: { 
@@ -59,7 +67,7 @@ export default {
   methods: {
     addList() {
       store.commit('addList', this.newItem)
-      this.newItem = { text: '', score: null }
+      this.newItem = { title: '', desc: '', score: null }
     },
     removeList(id) {
       store.commit('removeList', id)
@@ -70,10 +78,6 @@ export default {
 </script>
 
 <style scoped>
-.item {
-  margin: 1rem auto;
-}
-
 .remove {
   cursor: pointer;  
   border-radius: 1rem;

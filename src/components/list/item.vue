@@ -1,7 +1,10 @@
 <template>
   <div class="item">
-    <span class="score">{{ item.score }} / 10</span>
-    <span class="text">{{ item.text }}</span> 
+    <div class="score">{{ item.score }}</div>
+    <div class="text">
+      <h3 class="title">{{ item.title }}</h3>
+      <p>{{ item.desc }}</p>
+    </div> 
     <slot></slot>
   </div>
 </template>
@@ -11,7 +14,7 @@ export default {
   name: 'item',
   props: {
     item : {
-      text: String,
+      title: String,
       score: String | Number
     }
   }
@@ -30,9 +33,6 @@ export default {
   padding: 1rem;
 }
 
-.text {
-  text-align: center;
-}
 .score {
   border-radius: 1rem;
   background-color: darkgray;
