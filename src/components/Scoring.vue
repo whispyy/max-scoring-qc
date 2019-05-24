@@ -28,7 +28,7 @@
     <draggable v-model="list" group="score" @start="drag=true" @end="drag=false">
       <div v-for="item in list" :key="item.id">
         <item :item="item">
-          <button class="remove" @click="removeList(item)">x</button>
+          <button @click="removeList(item)">Remove</button>
         </item>
       </div>
     </draggable>
@@ -78,15 +78,5 @@ export default {
 </script>
 
 <style scoped>
-.remove {
-  cursor: pointer;  
-  border-radius: 1rem;
-  background-color: darkgray;
-  color: white;
-  padding: 0.2rem 1rem;
-}
 
-.remove:hover {
-  background-color: lightgrey;
-}
 </style>

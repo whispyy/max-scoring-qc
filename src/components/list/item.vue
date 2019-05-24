@@ -1,21 +1,43 @@
 <template>
   <div class="item">
-    <div class="score">{{ item.score }}</div>
-    <div class="text">
-      <h3 class="title">{{ item.title }}</h3>
-      <p>{{ item.desc }}</p>
-    </div> 
-    <slot></slot>
+    <div class="container">
+      <div class="score">{{ item.score }}</div>
+      <div class="content">
+        <h3 class="title">{{ item.title }}</h3>
+        <p class="description">{{ item.desc }}</p>
+      </div> 
+      <div class="side" @click="toggleSideMenu()">
+        <svg viewBox="0 0 24 24" class="icon"><g><path d="M20.207 8.147c-.39-.39-1.023-.39-1.414 0L12 14.94 5.207 8.147c-.39-.39-1.023-.39-1.414 0-.39.39-.39 1.023 0 1.414l7.5 7.5c.195.196.45.294.707.294s.512-.098.707-.293l7.5-7.5c.39-.39.39-1.022 0-1.413z"></path></g></svg>
+        <side-menu :open="openSideMenu">
+          <slot></slot>
+        </side-menu>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import sideMenu from '@/components/list/side-menu'
 export default {
   name: 'item',
+  components: {
+    sideMenu
+  },
   props: {
     item : {
       title: String,
+      desc: String,
       score: String | Number
+    },
+  },
+  data() {
+    return { 
+      openSideMenu : false
+    }
+  },
+  methods: {
+    toggleSideMenu() {
+      this.openSideMenu = !this.openSideMenu
     }
   }
 }
@@ -23,20 +45,63 @@ export default {
 
 <style scoped>
 .item {
+  border-top: solid 5px lightskyblue;
+  background-color: white;
+
+  width: 60%;
+  margin: 10px auto;
+}
+
+.container {
   display: flex;
-  align-content: center;
-  justify-content: space-between;
-  border-radius: 1rem;
-  border: solid 1px lightgrey;
-  width: 50%;
-  margin: auto;
-  padding: 1rem;
+  align-items: center;
 }
 
 .score {
-  border-radius: 1rem;
-  background-color: darkgray;
-  color: white;
-  padding: 0.2rem 1rem;
+  background-color: lightskyblue;
+
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  margin: 16px;
+  border-radius: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 12px 0;
+}
+
+.content .title {
+  margin: 0;
+}
+
+.content .description {
+  margin: 0;
+}
+
+.side {
+  align-self: flex-start;
+  position: relative;
+  margin: 10px;
+  width: 16px;
+  padding: 5px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.side:hover {
+  background-color: lightskyblue;
+  border-radius: 100%;
+}
+
+.side .icon {
+  width: 16px;
+  height: 16px;
 }
 </style>
