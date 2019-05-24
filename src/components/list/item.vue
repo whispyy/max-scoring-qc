@@ -1,7 +1,7 @@
 <template>
-  <div class="item">
+  <div class="item" v-bind:style="{ borderTopColor: item.color }">
     <div class="container">
-      <div class="score">{{ item.score }}</div>
+      <div class="score" v-bind:style="{ background: item.color }">{{ item.score }}</div>
       <div class="content">
         <h3 class="title">{{ item.title }}</h3>
         <p class="description">{{ item.desc }}</p>
@@ -27,7 +27,8 @@ export default {
     item : {
       title: String,
       desc: String,
-      score: String | Number
+      score: String | Number,
+      color: String
     },
   },
   data() {
@@ -90,13 +91,13 @@ export default {
   position: relative;
   margin: 10px;
   width: 16px;
-  padding: 5px;
   height: 16px;
+  padding: 5px;
   cursor: pointer;
 }
 
 .side:hover {
-  background-color: lightskyblue;
+  background-color: #333333d3;
   border-radius: 100%;
 }
 

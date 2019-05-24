@@ -28,6 +28,7 @@
     <draggable v-model="list" group="score" @start="drag=true" @end="drag=false">
       <div v-for="item in list" :key="item.id">
         <item :item="item">
+          <button @click="changeColor({ ...item, color: 'lightblue' })">Set color</button>
           <button @click="removeList(item)">Remove</button>
         </item>
       </div>
@@ -66,11 +67,14 @@ export default {
     },
   methods: {
     addList() {
-      store.commit('addList', this.newItem)
+      store.commit('addItem', this.newItem)
       this.newItem = { title: '', desc: '', score: null }
     },
-    removeList(id) {
-      store.commit('removeList', id)
+    changeColor(item) {
+      store.commit('updateItemColor', item)
+    },
+    removeList(item) {
+      store.commit('removeItem', item)
     }
 
   }
