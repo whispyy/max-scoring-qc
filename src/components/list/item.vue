@@ -46,7 +46,7 @@ export default {
 
 <style scoped>
 .item {
-  border-top: solid 5px lightskyblue;
+  border-top: solid 5px darkgrey;
   background-color: white;
 
   width: 60%;
@@ -59,7 +59,7 @@ export default {
 }
 
 .score {
-  background-color: lightskyblue;
+  background-color: darkgrey;
 
   display: flex;
   flex-shrink: 0;
@@ -69,6 +69,7 @@ export default {
   width: 40px;
   margin: 16px;
   border-radius: 100%;
+  font-weight: 600;
 }
 
 .content {

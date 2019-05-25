@@ -28,31 +28,36 @@
     <draggable v-model="list" group="score" @start="drag=true" @end="drag=false">
       <div v-for="item in list" :key="item.id">
         <item :item="item">
-          <button @click="changeColor({ ...item, color: 'lightblue' })">Set color</button>
+          <button @click="$modal.show('color-picker', { item })">Set color</button>
           <button @click="removeList(item)">Remove</button>
         </item>
       </div>
     </draggable>
+    
+    <!-- BEGIN modals declarations -->
+    <color-picker @update="updateColor"></color-picker>
+    <!-- END modals declarations -->
   </div>
 </template>
 
 <script>
 import draggable from 'vuedraggable'
-import { item } from '@/components/list'
+import { colorPicker, item } from '@/components/list'
 import store from '../store'
 
 export default {
   name: 'Scoring',
   components: {
     draggable,
-    item
+    item,
+    colorPicker,
   },
   props: {
     title: String
   },
   data() {
     return { 
-      newItem : { title: '', desc: '', score: null }
+      newItem: { title: '', desc: '', score: null }
     }
   },
   computed: { 
@@ -70,11 +75,11 @@ export default {
       store.commit('addItem', this.newItem)
       this.newItem = { title: '', desc: '', score: null }
     },
-    changeColor(item) {
-      store.commit('updateItemColor', item)
-    },
     removeList(item) {
       store.commit('removeItem', item)
+    },
+    updateColor(item) {
+      store.commit('updateItemColor', item)
     }
 
   }

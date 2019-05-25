@@ -1,3 +1,4 @@
+import colorPicker from './color-picker'
 import item from './item'
 
-export { item }
+export { colorPicker, item }
