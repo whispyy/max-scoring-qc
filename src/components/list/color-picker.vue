@@ -73,9 +73,6 @@ export default {
   height: calc(100% - 20px);
   margin: 10px;
 }
-h2 {
-  margin: 0;
-}
 .palette {
   display: flex;
   width: 100%;
