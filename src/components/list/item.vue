@@ -81,6 +81,7 @@ export default {
 
 .content .title {
   margin: 0;
+  font-weight: 500;
 }
 
 .content .description {
@@ -88,13 +89,15 @@ export default {
 }
 
 .side {
-  align-self: flex-start;
-  position: relative;
-  margin: 10px;
-  width: 16px;
-  height: 16px;
-  padding: 5px;
-  cursor: pointer;
+    align-self: flex-start;
+    position: relative;
+    margin: 10px;
+    width: 16px;
+    height: 16px;
+    /* padding: 5px; */
+    cursor: pointer;
+    display: flex;
+    flex-shrink: 0;
 }
 
 .side:hover {

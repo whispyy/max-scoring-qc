@@ -17,6 +17,7 @@ export default {
 .side-menu {
   display: none;
   position: absolute;
+  top: 16px;
   right: 0;
   z-index: 2;
   border-radius: 2px;
