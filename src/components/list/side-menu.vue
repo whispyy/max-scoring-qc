@@ -19,6 +19,7 @@ export default {
   position: absolute;
   top: 16px;
   right: 0;
+  width: 100px;
   z-index: 2;
   border-radius: 2px;
   background-color: #ffffff;

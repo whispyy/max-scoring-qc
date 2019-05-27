@@ -48,8 +48,10 @@ export default {
 .item {
   border-top: solid 5px darkgrey;
   background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 0 18px 0 rgba(45,45,45,.08);
 
-  width: 60%;
+  width: 100%;
   margin: 10px auto;
 }
 
@@ -91,17 +93,17 @@ export default {
 .side {
     align-self: flex-start;
     position: relative;
-    margin: 10px;
-    width: 16px;
-    height: 16px;
-    /* padding: 5px; */
+    margin: 5px;
+    width: 26px;
+    height: 26px;
+    padding: 5px;
     cursor: pointer;
     display: flex;
     flex-shrink: 0;
 }
 
 .side:hover {
-  background-color: #333333d3;
+  background-color: #f4f4f4;
   border-radius: 100%;
 }
 

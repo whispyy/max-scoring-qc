@@ -2,7 +2,11 @@
   <div class="scoring">
     <top-bar :title="title" @submit="addList"></top-bar>
 
-    <draggable v-model="list" group="score" @start="drag=true" @end="drag=false">
+    <draggable
+      class="list"
+      v-model="list"
+      group="score"
+      @start="drag=true" @end="drag=false">
       <div v-for="item in list" :key="item.id">
         <item :item="item">
           <button @click="$modal.show('color-picker', { item })">Set color</button>
@@ -62,5 +66,10 @@ export default {
 </script>
 
 <style scoped>
-
+.list {
+  padding: 10px;
+  background-color: #f4f4f4d8;
+  width: 60%;
+  margin: 10px auto;
+}
 </style>
