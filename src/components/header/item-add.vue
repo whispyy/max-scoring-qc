@@ -4,20 +4,21 @@
     <form class="container" @submit.prevent="submit">
       <h2>Add a new item</h2>
       <div>
-        <input
-          type="text"
-          placeholder="Title"
-          v-model="newItem.title"
-        />
-        <input
-          type="number"
-          min="0" max="10"
-          placeholder="Score"
-          v-model="newItem.score"
-        />
-      </div>
-      <div>
+        <div class="row">
+          <input
+            type="text"
+            placeholder="Title"
+            v-model="newItem.title"
+          />
+          <input
+            type="number"
+            min="0" max="10"
+            placeholder="Score"
+            v-model="newItem.score"
+          />
+        </div>
         <textarea
+          class="row"
           placeholder="Description"
           v-model="newItem.desc">
         </textarea>
@@ -76,10 +77,62 @@ export default {
   transform: rotate(-45deg);
 }
 
+
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   height: calc(100% - 20px);
   margin: 10px;
 }
+
+.row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+input,
+textarea {
+  box-sizing: border-box;
+  margin-bottom: 4px;
+  font-size: 12px;
+  line-height: 2;
+  border: 0;
+  border-bottom: 1px solid #dddedf;
+  padding: 4px 8px;
+  font-family: inherit;
+  transition: 0.5s all;
+  outline: none;
+}
+input[type=text] {
+  width: 70%;
+}
+input[type=number] {
+  width: 20%;
+}
+
+button {
+  background: white;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 10px;
+  letter-spacing: 1px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  color: #8b8c8d;
+  cursor: pointer;
+  border: 1px solid #DDDEDF;
+  text-transform: uppercase;
+  transition: 0.1s all;
+  font-size: 10px;
+  outline: none;
+}
+
+button:hover {
+  border-color: #c7c8c9;
+  color: #6f7071;
+}
+
 </style>

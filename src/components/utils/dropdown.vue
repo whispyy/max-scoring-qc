@@ -1,23 +1,34 @@
 <template>
-  <div class="side-menu" v-bind:class="{'-open': open }">
+  <div class="dropdown"
+    v-bind:style="{
+      top: position && position.top + 'px',
+      right: position && position.right + 'px',
+      width: position && position.width + 'px'
+    }"
+    v-bind:class="{'-open': open }">
     <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'side-menu',
+  name: 'dropdown',
   props: {
-    open: Boolean
+    open: Boolean,
+    position: {
+      top: Number,
+      right: Number,
+      width: Number,
+    }
   }
 }
 </script>
 
 <style scoped>
-.side-menu {
+.dropdown {
   display: none;
   position: absolute;
-  top: 16px;
+  top: 0;
   right: 0;
   width: 100px;
   z-index: 2;
@@ -29,7 +40,7 @@ export default {
   transition: all 0.2s;
 }
 
-.side-menu.-open {
+.dropdown.-open {
   display: block;
   opacity: 1;
   transform: scale(1);
@@ -45,5 +56,6 @@ button {
 button:hover,
 button:focus {
   background-color: #eeeeee;
+  outline: none;
 }
 </style>

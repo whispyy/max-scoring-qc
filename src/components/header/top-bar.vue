@@ -7,18 +7,37 @@
 
       <h1 class="center">{{ title }}</h1>
 
-      <div class="icon">
+      <div class="icon" @click="toggleMenu()">
         <svg viewBox="0 0 448 512"><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg>
+        <dropdown :open="openMenu" :position="{ top: 30, width: 200 }">
+          <slot></slot>
+          <button>Dark mode</button>
+          <button>Settings</button>
+        </dropdown>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { dropdown } from '@/components/utils'
 export default {
   name: 'top-bar',
+  components: {
+    dropdown
+  },
   props: {
     title: String
+  },
+  data() {
+    return { 
+      openMenu : false
+    }
+  },
+  methods: {
+    toggleMenu() {
+      this.openMenu = !this.openMenu
+    }
   }
 }
 </script>
@@ -34,7 +53,7 @@ export default {
   width: 100%;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: 2;
   background-color: #fff;
   box-shadow: 0 2px 4px -1px rgba(0,0,0,0.25);
   display: flex;
@@ -49,6 +68,7 @@ export default {
   height: 30px;
   color: darkgray;
   cursor: pointer;
+  position: relative;
 }
 
 .icon:hover {
