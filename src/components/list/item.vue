@@ -1,12 +1,12 @@
 <template>
-  <div class="item" v-bind:style="{ borderTopColor: item.color }">
+  <div class="item" :class="{ 'dark': dark }" :style="{ borderTopColor: item.color }">
     <div class="container">
-      <div class="score" v-bind:style="{ background: item.color }">{{ item.score }}</div>
+      <div class="score" :style="{ background: item.color }">{{ item.score }}</div>
       <div class="content">
         <h3 class="title">{{ item.title }}</h3>
         <p class="description">{{ item.desc }}</p>
       </div> 
-      <div class="side" @click="toggleSideMenu()">
+      <div class="side" @click.stop="toggleSideMenu()">
         <svg viewBox="0 0 24 24" class="icon"><g><path d="M20.207 8.147c-.39-.39-1.023-.39-1.414 0L12 14.94 5.207 8.147c-.39-.39-1.023-.39-1.414 0-.39.39-.39 1.023 0 1.414l7.5 7.5c.195.196.45.294.707.294s.512-.098.707-.293l7.5-7.5c.39-.39.39-1.022 0-1.413z"></path></g></svg>
         <dropdown :open="openSideMenu" :position="{ top: 26 }">
           <slot></slot>
@@ -24,12 +24,13 @@ export default {
     dropdown
   },
   props: {
+    dark: Boolean,
     item : {
       title: String,
       desc: String,
       score: String | Number,
       color: String
-    },
+    }
   },
   data() {
     return { 
@@ -110,5 +111,11 @@ export default {
 .side .icon {
   width: 16px;
   height: 16px;
+}
+
+/* DARK MODE */
+.dark .container {
+  background-color: #1c2938;
+  color: #f4f4f4;
 }
 </style>

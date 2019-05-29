@@ -26,6 +26,10 @@ export default new Vuex.Store({
     },
     removeItem(state, item) {
       state.list.splice(state.list.indexOf(item), 1)
+    },
+
+    toggleDark(state) {
+      state.dark = !state.dark
     }
   }
 })

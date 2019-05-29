@@ -1,6 +1,9 @@
 <template>
-  <div class="scoring">
-    <top-bar :title="title" @submit="addList"></top-bar>
+  <div class="scoring" :class="{ 'dark': dark }">
+    <top-bar :dark="dark" :title="title" @submit="addList">
+      <button @click="toggleDark()">Dark mode</button>
+      <button>Settings</button>
+    </top-bar>
 
     <draggable
       class="list"
@@ -8,7 +11,7 @@
       group="score"
       @start="drag=true" @end="drag=false">
       <div v-for="item in list" :key="item.id">
-        <item :item="item">
+        <item :dark="dark" :item="item">
           <button @click="$modal.show('color-picker', { item })">Set color</button>
           <button @click="removeList(item)">Remove</button>
         </item>
@@ -48,6 +51,11 @@ export default {
       set(value) {
         store.commit('setList', value)
       }
+    },
+    dark: {
+      get() {
+        return store.state.dark
+      }
     }
   },
   methods: {
@@ -59,6 +67,9 @@ export default {
     },
     updateColor(item) {
       store.commit('updateItemColor', item)
+    },
+    toggleDark() {
+      store.commit('toggleDark')
     }
 
   }
@@ -66,10 +77,18 @@ export default {
 </script>
 
 <style scoped>
+.scoring {
+  height: 100%;
+}
+
 .list {
   padding: 10px;
   background-color: #f4f4f4d8;
   width: 60%;
   margin: 10px auto;
+}
+
+.dark {
+  background-color: #10171e;
 }
 </style>
