@@ -1,23 +1,23 @@
 <template>
   <div id="app">
-    <Scoring title="Max Scoring Quebec"/>
+    <Scoring title="Max Scoring Quebec" />
   </div>
 </template>
 
 <script>
-import Scoring from './components/Scoring.vue'
+import Scoring from "./components/Scoring.vue";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
     Scoring
   }
-}
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 

@@ -1,27 +1,30 @@
 <template>
-  <div class="dropdown"
-    v-bind:style="{
+  <div
+    class="dropdown"
+    :style="{
       top: position && position.top + 'px',
       right: position && position.right + 'px',
       width: position && position.width + 'px'
     }"
-    v-bind:class="{'-open': open }">
+    :class="{ '-open': open, dark: dark }"
+  >
     <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'dropdown',
+  name: "dropdown",
   props: {
+    dark: Boolean,
     open: Boolean,
     position: {
       top: Number,
       right: Number,
-      width: Number,
+      width: Number
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -51,11 +54,26 @@ button {
   border: none;
   width: 100%;
   padding: 0.5em 1.5rem;
+  font-size: 12px;
 }
 
 button:hover,
 button:focus {
   background-color: #eeeeee;
   outline: none;
+}
+
+/* DARK MODE */
+.dark .dropdown {
+  background-color: #1c2938;
+}
+
+.dark button {
+  color: #f4f4f4;
+}
+
+.dark button:hover,
+.dark button:focus {
+  background-color: #10171e;
 }
 </style>

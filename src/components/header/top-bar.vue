@@ -1,18 +1,26 @@
 <template>
-  <div class="header">
+  <div class="header" :class="{ dark: dark }">
     <div class="header-container">
       <div class="icon" @click="$modal.show('item-add')">
-        <svg viewBox="0 0 448 512"><path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg>
+        <svg viewBox="0 0 448 512">
+          <path
+            fill="currentColor"
+            d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+          ></path>
+        </svg>
       </div>
 
       <h1 class="center">{{ title }}</h1>
 
       <div class="icon" @click="toggleMenu()">
-        <svg viewBox="0 0 448 512"><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg>
+        <svg viewBox="0 0 448 512">
+          <path
+            fill="currentColor"
+            d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+          ></path>
+        </svg>
         <dropdown :open="openMenu" :position="{ top: 30, width: 200 }">
           <slot></slot>
-          <button>Dark mode</button>
-          <button>Settings</button>
         </dropdown>
       </div>
     </div>
@@ -20,26 +28,27 @@
 </template>
 
 <script>
-import { dropdown } from '@/components/utils'
+import { dropdown } from "@/components/utils";
 export default {
-  name: 'top-bar',
+  name: "top-bar",
   components: {
     dropdown
   },
   props: {
-    title: String
+    title: String,
+    dark: Boolean
   },
   data() {
-    return { 
-      openMenu : false
-    }
+    return {
+      openMenu: false
+    };
   },
   methods: {
     toggleMenu() {
-      this.openMenu = !this.openMenu
+      this.openMenu = !this.openMenu;
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -55,7 +64,7 @@ export default {
   left: 0;
   z-index: 2;
   background-color: #fff;
-  box-shadow: 0 2px 4px -1px rgba(0,0,0,0.25);
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.25);
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -73,5 +82,16 @@ export default {
 
 .icon:hover {
   background-color: #f4f4f4;
+}
+
+/* DARK MODE */
+.dark .header-container {
+  background-color: #1c2938;
+}
+.dark .header-container h1 {
+  color: #f4f4f4;
+}
+.dark .icon:hover {
+  background-color: #10171e;
 }
 </style>
