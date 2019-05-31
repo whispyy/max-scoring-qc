@@ -5,22 +5,16 @@
       <h2>Add a new item</h2>
       <div>
         <div class="row">
-          <input
-            type="text"
-            placeholder="Title"
-            v-model="newItem.title"
-          />
+          <input type="text" placeholder="Title" v-model="newItem.title" />
           <input
             type="number"
-            min="0" max="10"
+            min="0"
+            max="10"
             placeholder="Score"
             v-model="newItem.score"
           />
         </div>
-        <textarea
-          class="row"
-          placeholder="Description"
-          v-model="newItem.desc">
+        <textarea class="row" placeholder="Description" v-model="newItem.desc">
         </textarea>
       </div>
       <button>Add</button>
@@ -30,23 +24,23 @@
 
 <script>
 export default {
-  name: 'item-add',
+  name: "item-add",
   data() {
-    return { 
-      newItem: { title: '', desc: '', score: null }
-    }
+    return {
+      newItem: { title: "", desc: "", score: null }
+    };
   },
   methods: {
     hide() {
-      this.$modal.hide('item-add');
+      this.$modal.hide("item-add");
     },
     submit() {
-      this.$emit('submit', this.newItem)
-      this.newItem = { title: '', desc: '', score: null }
-      this.hide()
+      this.$emit("submit", this.newItem);
+      this.newItem = { title: "", desc: "", score: null };
+      this.hide();
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -62,10 +56,11 @@ export default {
 .close:hover {
   opacity: 1;
 }
-.close:before, .close:after {
+.close:before,
+.close:after {
   position: absolute;
   left: 15px;
-  content: ' ';
+  content: " ";
   height: 33px;
   width: 2px;
   background-color: #333;
@@ -76,7 +71,6 @@ export default {
 .close:after {
   transform: rotate(-45deg);
 }
-
 
 .container {
   display: flex;
@@ -106,10 +100,10 @@ textarea {
   transition: 0.5s all;
   outline: none;
 }
-input[type=text] {
+input[type="text"] {
   width: 70%;
 }
-input[type=number] {
+input[type="number"] {
   width: 20%;
 }
 
@@ -123,7 +117,7 @@ button {
   font-weight: 400;
   color: #8b8c8d;
   cursor: pointer;
-  border: 1px solid #DDDEDF;
+  border: 1px solid #dddedf;
   text-transform: uppercase;
   transition: 0.1s all;
   font-size: 10px;
@@ -134,5 +128,4 @@ button:hover {
   border-color: #c7c8c9;
   color: #6f7071;
 }
-
 </style>

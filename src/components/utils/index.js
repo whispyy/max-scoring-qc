@@ -1,4 +1,4 @@
-import colors from './colors'
-import dropdown from './dropdown'
+import colors from "./colors";
+import dropdown from "./dropdown";
 
-export { colors, dropdown }
+export { colors, dropdown };

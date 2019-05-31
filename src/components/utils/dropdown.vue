@@ -1,28 +1,30 @@
 <template>
-  <div class="dropdown"
+  <div
+    class="dropdown"
     :style="{
       top: position && position.top + 'px',
       right: position && position.right + 'px',
       width: position && position.width + 'px'
     }"
-    :class="{'-open': open, 'dark': dark }">
+    :class="{ '-open': open, dark: dark }"
+  >
     <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'dropdown',
+  name: "dropdown",
   props: {
     dark: Boolean,
     open: Boolean,
     position: {
       top: Number,
       right: Number,
-      width: Number,
+      width: Number
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -67,7 +69,7 @@ button:focus {
 }
 
 .dark button {
-  color: #f4f4f4; 
+  color: #f4f4f4;
 }
 
 .dark button:hover,
