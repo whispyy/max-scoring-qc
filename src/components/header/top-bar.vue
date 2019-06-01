@@ -1,7 +1,7 @@
 <template>
   <div class="header" :class="{ dark: dark }">
     <div class="header-container">
-      <div class="icon" @click="$modal.show('item-add')">
+      <div class="icon" @click="$modal.show('item-add-edit')">
         <svg viewBox="0 0 448 512">
           <path
             fill="currentColor"

@@ -1,6 +1,6 @@
 <template>
   <div class="scoring" :class="{ dark: dark }">
-    <top-bar :dark="dark" :title="title" @submit="addList">
+    <top-bar :dark="dark" :title="title">
       <button @click="toggleDark()">Dark mode</button>
       <button>Settings</button>
     </top-bar>
@@ -17,13 +17,14 @@
           <button @click="$modal.show('color-picker', { item })">
             Set color
           </button>
+          <button @click="$modal.show('item-add-edit', { item })">Edit</button>
           <button @click="removeList(item)">Remove</button>
         </item>
       </div>
     </draggable>
 
     <!-- BEGIN modals declarations -->
-    <item-add @submit="addList"></item-add>
+    <item-add-edit @save="addEditList"></item-add-edit>
     <color-picker @update="updateColor"></color-picker>
     <!-- END modals declarations -->
   </div>
@@ -31,8 +32,9 @@
 
 <script>
 import draggable from "vuedraggable";
-import { itemAdd, topBar } from "@/components/header";
-import { colorPicker, item } from "@/components/list";
+import { topBar } from "@/components/header";
+import { item } from "@/components/list";
+import { colorPicker, itemAddEdit } from "@/components/modals";
 import store from "../store";
 
 export default {
@@ -42,7 +44,7 @@ export default {
     topBar,
     item,
     colorPicker,
-    itemAdd
+    itemAddEdit
   },
   props: {
     title: String
@@ -63,8 +65,9 @@ export default {
     }
   },
   methods: {
-    addList(item) {
-      store.commit("addItem", item);
+    addEditList(item, isEdit) {
+      const type = isEdit ? "updateItem" : "addItem";
+      store.commit(type, item);
     },
     removeList(item) {
       store.commit("removeItem", item);

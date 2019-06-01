@@ -19,6 +19,11 @@ export default new Vuex.Store({
       const id = `item-${state.list.length}`;
       state.list.push({ title, desc, score, id });
     },
+    updateItem(state, { id, title, desc, score }) {
+      const item = state.list.find(item => item.id === id);
+      const index = state.list.findIndex(item => item.id === id);
+      Vue.set(state.list, index, { ...item, title, desc, score });
+    },
     updateItemColor(state, { id, color }) {
       const item = state.list.find(item => item.id === id);
       const index = state.list.findIndex(item => item.id === id);

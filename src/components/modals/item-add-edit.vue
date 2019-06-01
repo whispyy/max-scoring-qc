@@ -1,42 +1,51 @@
 <template>
-  <modal name="item-add" :adaptive="true">
+  <modal name="item-add-edit" @before-open="beforeOpen" :adaptive="true">
     <div class="close" @click="hide()"></div>
     <form class="container" @submit.prevent="submit">
-      <h2>Add a new item</h2>
+      <h2 v-if="!editMode">Add a new item</h2>
+      <h2 v-if="editMode">Edit item</h2>
       <div>
         <div class="row">
-          <input type="text" placeholder="Title" v-model="newItem.title" />
+          <input type="text" placeholder="Title" v-model="item.title" />
           <input
             type="number"
             min="0"
             max="10"
             placeholder="Score"
-            v-model="newItem.score"
+            v-model="item.score"
           />
         </div>
-        <textarea class="row" placeholder="Description" v-model="newItem.desc">
+        <textarea class="row" placeholder="Description" v-model="item.desc">
         </textarea>
       </div>
-      <button>Add</button>
+      <button>Save</button>
     </form>
   </modal>
 </template>
 
 <script>
 export default {
-  name: "item-add",
+  name: "item-add-edit",
   data() {
     return {
-      newItem: { title: "", desc: "", score: null }
+      item: { title: "", desc: "", score: null },
+      editMode: false
     };
   },
   methods: {
+    beforeOpen(event) {
+      if (event.params) {
+        this.item = event.params.item;
+        this.editMode = true;
+      }
+    },
     hide() {
-      this.$modal.hide("item-add");
+      this.$modal.hide("item-add-edit");
     },
     submit() {
-      this.$emit("submit", this.newItem);
-      this.newItem = { title: "", desc: "", score: null };
+      this.$emit("save", this.item, this.editMode);
+      this.item = { title: "", desc: "", score: null };
+      this.editMode = false;
       this.hide();
     }
   }
