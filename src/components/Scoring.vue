@@ -1,10 +1,5 @@
 <template>
-  <div class="scoring" :class="{ dark: dark }">
-    <top-bar :dark="dark" :title="title">
-      <button @click="toggleDark()">Dark mode</button>
-      <button>Settings</button>
-    </top-bar>
-
+  <div class="scoring">
     <draggable
       class="list"
       v-model="list"
@@ -32,7 +27,6 @@
 
 <script>
 import draggable from "vuedraggable";
-import { topBar } from "@/components/header";
 import { item } from "@/components/list";
 import { colorPicker, itemAddEdit } from "@/components/modals";
 import store from "../store";
@@ -41,13 +35,12 @@ export default {
   name: "Scoring",
   components: {
     draggable,
-    topBar,
     item,
     colorPicker,
     itemAddEdit
   },
   props: {
-    title: String
+    dark: Boolean
   },
   computed: {
     list: {
@@ -56,11 +49,6 @@ export default {
       },
       set(value) {
         store.commit("setList", value);
-      }
-    },
-    dark: {
-      get() {
-        return store.state.dark;
       }
     }
   },
@@ -74,9 +62,6 @@ export default {
     },
     updateColor(item) {
       store.commit("updateItemColor", item);
-    },
-    toggleDark() {
-      store.commit("toggleDark");
     }
   }
 };
@@ -92,9 +77,5 @@ export default {
   background-color: #f4f4f4d8;
   width: 60%;
   margin: 10px auto;
-}
-
-.dark {
-  background-color: #10171e;
 }
 </style>
