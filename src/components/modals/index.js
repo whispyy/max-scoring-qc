@@ -1,4 +1,5 @@
+import boardAdd from "./board-add";
 import colorPicker from "./color-picker";
 import itemAddEdit from "./item-add-edit";
 
-export { colorPicker, itemAddEdit };
+export { boardAdd, colorPicker, itemAddEdit };

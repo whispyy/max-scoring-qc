@@ -1,26 +1,16 @@
 <template>
-  <modal
-    name="item-add-edit"
-    @before-open="init"
-    @before-close="reset"
-    :adaptive="true"
-  >
+  <modal name="board-add" @before-close="reset" :adaptive="true">
     <div class="close" @click="hide()"></div>
     <form class="container" @submit.prevent="submit">
-      <h2 v-if="!editMode">Add a new item</h2>
-      <h2 v-if="editMode">Edit item</h2>
+      <h2>Add a new board</h2>
       <div>
-        <div class="row">
-          <input type="text" placeholder="Title" v-model="item.title" />
-          <input
-            type="number"
-            min="0"
-            max="10"
-            placeholder="Score"
-            v-model="item.score"
-          />
-        </div>
-        <textarea class="row" placeholder="Description" v-model="item.desc">
+        <input
+          class="row"
+          type="text"
+          placeholder="Name your board"
+          v-model="board.name"
+        />
+        <textarea class="row" placeholder="Description" v-model="board.desc">
         </textarea>
       </div>
       <button>Save</button>
@@ -33,27 +23,18 @@ export default {
   name: "item-add-edit",
   data() {
     return {
-      item: { title: "", desc: "", score: null },
-      editMode: false
+      board: { name: "", desc: "" }
     };
   },
   methods: {
-    init(event) {
-      if (event.params) {
-        this.item = event.params.item;
-        this.editMode = true;
-      }
-    },
     reset() {
-      this.item = { title: "", desc: "", score: null };
-      this.editMode = false;
+      this.board = { name: "", desc: "" };
     },
     hide() {
-      this.$modal.hide("item-add-edit");
+      this.$modal.hide("board-add");
     },
     submit() {
-      this.$emit("save", this.item, this.editMode);
-      this.editMode = false;
+      this.$emit("save", this.board);
       this.hide();
     }
   }
@@ -116,12 +97,6 @@ textarea {
   font-family: inherit;
   transition: 0.5s all;
   outline: none;
-}
-input[type="text"] {
-  width: 70%;
-}
-input[type="number"] {
-  width: 20%;
 }
 
 button {

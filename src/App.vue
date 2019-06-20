@@ -5,13 +5,15 @@
       <button>Settings</button>
     </top-bar>
 
-    <Scoring :dark="dark" />
+    <Board v-if="!selectedListId" :dark="dark" />
+    <Scoring v-if="selectedListId" :id="selectedListId" :dark="dark" />
   </div>
 </template>
 
 <script>
 import { topBar } from "@/components/header";
-import Scoring from "./components/Scoring.vue";
+import Board from "@/components/Board.vue";
+import Scoring from "@/components/Scoring.vue";
 
 import store from "./store";
 
@@ -19,12 +21,18 @@ export default {
   name: "app",
   components: {
     topBar,
+    Board,
     Scoring
   },
   computed: {
     dark: {
       get() {
         return store.state.dark;
+      }
+    },
+    selectedListId: {
+      get() {
+        return store.state.selectedListId;
       }
     }
   },

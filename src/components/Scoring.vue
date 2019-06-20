@@ -40,6 +40,7 @@ export default {
     itemAddEdit
   },
   props: {
+    id: Number,
     dark: Boolean
   },
   computed: {
@@ -48,6 +49,7 @@ export default {
         return store.state.list;
       },
       set(value) {
+        // put here call to retrieve scoring list
         store.commit("setList", value);
       }
     }
@@ -69,7 +71,7 @@ export default {
 
 <style scoped>
 .scoring {
-  height: 100%;
+  max-height: 100%;
 }
 
 .list {
