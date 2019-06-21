@@ -5,8 +5,8 @@
       <button>Settings</button>
     </top-bar>
 
-    <Board v-if="!selectedListId" :dark="dark" />
-    <Scoring v-if="selectedListId" :id="selectedListId" :dark="dark" />
+    <Board v-if="!activeBoard" :dark="dark" />
+    <Scoring v-else :board="activeBoard" :dark="dark" />
   </div>
 </template>
 
@@ -30,9 +30,9 @@ export default {
         return store.state.dark;
       }
     },
-    selectedListId: {
+    activeBoard: {
       get() {
-        return store.state.selectedListId;
+        return store.state.activeBoard;
       }
     }
   },

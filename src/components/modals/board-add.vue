@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: "item-add-edit",
+  name: "board-add",
   data() {
     return {
       board: { name: "", desc: "" }

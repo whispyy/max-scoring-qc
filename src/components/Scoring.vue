@@ -1,5 +1,6 @@
 <template>
   <div class="scoring">
+    <score-bar :dark="dark" :title="board.name"></score-bar>
     <draggable
       class="list"
       v-model="list"
@@ -27,6 +28,7 @@
 
 <script>
 import draggable from "vuedraggable";
+import { scoreBar } from "@/components/header";
 import { item } from "@/components/list";
 import { colorPicker, itemAddEdit } from "@/components/modals";
 import store from "../store";
@@ -37,10 +39,15 @@ export default {
     draggable,
     item,
     colorPicker,
-    itemAddEdit
+    itemAddEdit,
+    scoreBar
   },
   props: {
-    id: Number,
+    board: {
+      id: String,
+      name: String,
+      desc: String
+    },
     dark: Boolean
   },
   computed: {

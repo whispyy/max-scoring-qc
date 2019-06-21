@@ -8,21 +8,24 @@ Vue.use(VModal);
 export default new Vuex.Store({
   state: {
     dark: false,
-    board: [],
-    selectedListId: null,
+    boards: [],
+    activeBoard: null,
     list: []
   },
   mutations: {
     // board part
-    setBoard(state, board) {
-      state.board = board;
+    setBoards(state, boards) {
+      state.boards = boards;
     },
     addBoard(state, { name, desc }) {
-      const id = `board-${state.board.length}`;
-      state.board.push({ name, desc, id });
+      const id = `board-${state.boards.length}`;
+      state.boards.push({ name, desc, id });
     },
-    activeBoard(state, { id }) {
-      state.selectedListId = id;
+    activeBoard(state, { id, name, desc }) {
+      state.activeBoard = { id, name, desc };
+    },
+    closeBoard(state) {
+      state.activeBoard = null;
     },
 
     // scoring list part

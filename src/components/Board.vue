@@ -1,13 +1,19 @@
 <template>
   <div class="board">
-    <div class="empty" v-if="!board.length">
+    <button @click="$modal.show('board-add')">New board</button>
+    <div class="empty" v-if="!boards.length">
       <h1>put blankstate here</h1>
       <button @click="$modal.show('board-add')">New board</button>
     </div>
 
-    <div class="">
-      <div v-for="b in board" :key="b.id" @click="selectActive(b)">
-        {{ b.name }}
+    <div class="board-list">
+      <div
+        class="board-tile"
+        v-for="board in boards"
+        :key="board.id"
+        @click="selectActive(board)"
+      >
+        <h3>{{ board.name }}</h3>
       </div>
     </div>
 
@@ -30,13 +36,13 @@ export default {
     dark: Boolean
   },
   computed: {
-    board: {
+    boards: {
       get() {
-        return store.state.board;
+        return store.state.boards;
       },
       set(value) {
         // put here call to retrieve available board
-        store.commit("setBoard", value);
+        store.commit("setBoards", value);
       }
     }
   },
@@ -54,5 +60,31 @@ export default {
 <style scoped>
 .board {
   max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.board-list {
+  display: flex;
+  align-items: flex-start;
+}
+
+.board-tile {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: darkgrey;
+  cursor: pointer;
+  border-radius: 3px;
+  margin: 5px;
+  padding: 5px;
+
+  height: 120px;
+  width: 200px;
+}
+
+.board-tile h3 {
+  color: white;
+  font-weight: 600;
 }
 </style>
