@@ -1,19 +1,26 @@
 <template>
   <div class="board">
-    <button @click="$modal.show('board-add')">New board</button>
-    <div class="empty" v-if="!boards.length">
+    <div class="container" v-if="!boards.length">
       <h1>put blankstate here</h1>
-      <button @click="$modal.show('board-add')">New board</button>
+      <button class="add-button" @click="$modal.show('board-add')">
+        New board
+      </button>
     </div>
 
-    <div class="board-list">
-      <div
-        class="board-tile"
-        v-for="board in boards"
-        :key="board.id"
-        @click="selectActive(board)"
-      >
-        <h3>{{ board.name }}</h3>
+    <div class="container" v-else>
+      <button class="add-button" @click="$modal.show('board-add')">
+        Add board
+      </button>
+      <div class="board-list">
+        <div
+          class="board-tile"
+          v-for="board in boards"
+          :key="board.id"
+          @click="selectActive(board)"
+        >
+          <h3>{{ board.name }}</h3>
+          <p>{{ board.desc }}</p>
+        </div>
       </div>
     </div>
 
@@ -65,13 +72,31 @@ export default {
   align-items: center;
 }
 
+.add-button {
+  margin-top: 20px;
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.add-button:hover {
+  background-color: darkgray;
+}
+
 .board-list {
   display: flex;
   align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 20px;
 }
 
 .board-tile {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   flex-wrap: wrap;
   background-color: darkgrey;
   cursor: pointer;
@@ -86,5 +111,10 @@ export default {
 .board-tile h3 {
   color: white;
   font-weight: 600;
+}
+
+.board-tile p {
+  text-align: left;
+  font-weight: 500;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id="app" :class="{ dark: dark }">
-    <top-bar :dark="dark" title="Max Scoring Quebec">
+    <top-bar :dark="dark" title="Max Scoring Quebec" @home="closeBoard()">
       <button @click="toggleDark()">Dark mode</button>
       <button>Settings</button>
     </top-bar>
@@ -39,6 +39,9 @@ export default {
   methods: {
     toggleDark() {
       store.commit("toggleDark");
+    },
+    closeBoard() {
+      store.commit("closeBoard");
     }
   }
 };
