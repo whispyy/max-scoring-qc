@@ -1,16 +1,17 @@
 <template>
   <div class="board">
     <div class="container" v-if="!boards.length">
-      <h1>put blankstate here</h1>
-      <button class="add-button" @click="$modal.show('board-add')">
+      <h2>Welcome</h2>
+      <p>Get started by creating your first board.</p>
+      <action-button @click="$modal.show('board-add')">
         New board
-      </button>
+      </action-button>
     </div>
 
     <div class="container" v-else>
-      <button class="add-button" @click="$modal.show('board-add')">
+      <action-button @click="$modal.show('board-add')">
         Add board
-      </button>
+      </action-button>
       <div class="board-list">
         <div
           class="board-tile"
@@ -31,12 +32,14 @@
 </template>
 
 <script>
+import { actionButton } from "@/components/utils";
 import { boardAdd } from "@/components/modals";
 import store from "../store";
 
 export default {
   name: "Board",
   components: {
+    actionButton,
     boardAdd
   },
   props: {
@@ -70,20 +73,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.add-button {
-  margin-top: 20px;
-  background-color: DodgerBlue;
-  border: none;
-  color: white;
-  padding: 12px 16px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.add-button:hover {
-  background-color: darkgray;
 }
 
 .board-list {
