@@ -1,16 +1,16 @@
 <template>
   <div class="board">
     <div class="container" v-if="!boards.length">
-      <h2>Welcome</h2>
-      <p>Get started by creating your first board.</p>
+      <h2>{{ $t("board.welcome") }}</h2>
+      <p>{{ $t("board.intro") }}</p>
       <action-button @click="$modal.show('board-add')">
-        New board
+        {{ $t("board.new_board") }}
       </action-button>
     </div>
 
     <div class="container" v-else>
       <action-button @click="$modal.show('board-add')">
-        Add board
+        {{ $t("board.add_board") }}
       </action-button>
       <div class="board-list">
         <div

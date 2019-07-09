@@ -1,0 +1,11 @@
+{
+  "top": {
+    "language": "Langue"
+  },
+  "board": {
+    "welcome": "Bienvenue",
+    "intro": "Commencez par créer votre premier tableau. Cliquez sur le bouton ci-dessous.",
+    "new_board": "Nouveau tableau",
+    "add_board": "Ajouter un tableau"
+  }
+}

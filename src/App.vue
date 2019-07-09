@@ -1,5 +1,6 @@
 <template>
   <div id="app" :class="{ dark: dark }">
+    <top-line></top-line>
     <top-bar :dark="dark" title="Max Scoring Quebec" @home="closeBoard()">
       <button @click="toggleDark()">Dark mode</button>
       <button>Settings</button>
@@ -11,7 +12,7 @@
 </template>
 
 <script>
-import { topBar } from "@/components/header";
+import { topBar, topLine } from "@/components/header";
 import Board from "@/components/Board.vue";
 import Scoring from "@/components/Scoring.vue";
 
@@ -21,6 +22,7 @@ export default {
   name: "app",
   components: {
     topBar,
+    topLine,
     Board,
     Scoring
   },

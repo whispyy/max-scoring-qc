@@ -60,7 +60,7 @@ export default {
 .header-container {
   position: fixed;
   width: 100%;
-  top: 0;
+  top: 32px;
   left: 0;
   z-index: 2;
   background-color: #fff;

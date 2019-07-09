@@ -1,0 +1,11 @@
+{
+  "top": {
+    "language": "Language"
+  },
+  "board": {
+    "welcome": "Welcome",
+    "intro": "Get started by creating your first board. Click the button down below.",
+    "new_board": "New board",
+    "add_board": "Add board"
+  }
+}
