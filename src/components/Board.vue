@@ -3,6 +3,9 @@
     <div class="container" v-if="!boards.length">
       <h2>{{ $t("board.welcome") }}</h2>
       <p>{{ $t("board.intro") }}</p>
+      <div>
+        <img alt="board blankstate" src="@/assets/board_blank.svg" />
+      </div>
       <action-button @click="$modal.show('board-add')">
         {{ $t("board.new_board") }}
       </action-button>
@@ -73,6 +76,10 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.container {
+  padding: 10px;
 }
 
 .board-list {
