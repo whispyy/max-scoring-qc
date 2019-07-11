@@ -2,13 +2,11 @@
 <svg width="640" height="480" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
  <!-- Created with SVG-edit - https://github.com/SVG-Edit/svgedit-->
  <g class="layer">
-  <title>Layer 1</title>
-  <rect fill="#ffffff" height="360" id="svg_1" stroke="#1e90ff" stroke-width="5" width="280" x="180" y="66.5"/>
-  <line fill="none" id="svg_7" stroke="#1e90ff" stroke-dasharray="null" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" x1="320" x2="311.5" y1="212.5" y2="294.877181"/>
-  <rect fill="#ffffff" height="260" id="svg_4" stroke="#1e90ff" stroke-width="5" width="220" x="210" y="88"/>
-  <rect fill="#FF0000" height="1" id="svg_2" stroke="#000000" stroke-width="5" width="0" x="397.5" y="151.5"/>
-  <rect fill="#ffffff" height="45" id="svg_5" stroke="#1e90ff" stroke-width="5" width="185" x="227.5" y="110"/>
-  <ellipse cx="255" cy="132.5" fill="#ffffff" id="svg_6" rx="15" ry="15" stroke="#1e90ff" stroke-dasharray="null" stroke-linecap="null" stroke-linejoin="null" stroke-width="5"/>
+  <title>Blankstate</title>
+  <rect fill="none" height="360" id="svg_1" stroke="#1e90ff" stroke-width="5" width="280" x="180" y="66.5"/>
+  <rect fill="none" height="260" id="svg_4" stroke="#1e90ff" stroke-width="5" width="220" x="210" y="88"/>
+  <rect fill="none" height="45" id="svg_5" stroke="#1e90ff" stroke-width="5" width="185" x="227.5" y="110"/>
+  <ellipse cx="255" cy="132.5" fill="none" id="svg_6" rx="15" ry="15" stroke="#1e90ff" stroke-dasharray="null" stroke-linecap="null" stroke-linejoin="null" stroke-width="5"/>
   <line fill="none" id="svg_8" stroke="#1e90ff" stroke-dasharray="null" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" x1="320" x2="320" y1="220" y2="280"/>
   <line fill="none" id="svg_10" stroke="#1e90ff" stroke-dasharray="null" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" x1="290" x2="350" y1="250" y2="250"/>
   <ellipse cx="320" cy="250" fill="none" id="svg_11" rx="42" ry="42" stroke="#1e90ff" stroke-dasharray="null" stroke-linecap="null" stroke-linejoin="null" stroke-width="5"/>

@@ -18,7 +18,6 @@ export default {
 
 <style scoped>
 button {
-  margin-top: 20px;
   border: none;
   padding: 12px 16px;
   font-size: 16px;

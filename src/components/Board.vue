@@ -1,15 +1,15 @@
 <template>
   <div class="board">
-    <div class="container" v-if="!boards.length">
-      <h2>{{ $t("board.welcome") }}</h2>
-      <p>{{ $t("board.intro") }}</p>
-      <div>
-        <img alt="board blankstate" src="@/assets/board_blank.svg" />
-      </div>
+    <blankstate
+      v-if="!boards.length"
+      :title="$t('board.welcome')"
+      :desc="$t('board.intro')"
+      :img="require('@/assets/board_blank.svg')"
+    >
       <action-button @click="$modal.show('board-add')">
         {{ $t("board.new_board") }}
       </action-button>
-    </div>
+    </blankstate>
 
     <div class="container" v-else>
       <action-button @click="$modal.show('board-add')">
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { actionButton } from "@/components/utils";
+import { actionButton, blankstate } from "@/components/utils";
 import { boardAdd } from "@/components/modals";
 import store from "../store";
 
@@ -43,6 +43,7 @@ export default {
   name: "Board",
   components: {
     actionButton,
+    blankstate,
     boardAdd
   },
   props: {
