@@ -1,24 +1,37 @@
 <template>
   <div class="header" :class="{ dark: dark }">
     <div class="header-container">
-      <div class="icon" @click="$modal.show('item-add-edit')">
-        <svg viewBox="0 0 448 512">
-          <path
-            fill="currentColor"
-            d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
-          ></path>
-        </svg>
+      <div class="item">
+        <h3 class="title">{{ title }}</h3>
+        <div class="icon" @click="$modal.show('edit-title')">
+          <svg viewBox="0 0 448 512">
+            <path
+              fill="currentColor"
+              d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+      <div class="item">
+        <div class="icon" @click="$modal.show('item-add-edit')">
+          <svg viewBox="0 0 448 512">
+            <path
+              fill="currentColor"
+              d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+            ></path>
+          </svg>
+        </div>
       </div>
 
-      <h2 class="center">{{ title }}</h2>
-
-      <div class="icon" @click="close()">
-        <svg viewBox="0 0 448 512">
-          <path
-            fill="currentColor"
-            d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
-          ></path>
-        </svg>
+      <div class="item">
+        <div class="icon" @click="close()">
+          <svg viewBox="0 0 448 512">
+            <path
+              fill="currentColor"
+              d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+            ></path>
+          </svg>
+        </div>
       </div>
     </div>
   </div>
@@ -48,17 +61,24 @@ export default {
 }
 
 .header-container {
-  position: fixed;
-  width: 100%;
-  top: 44px;
-  left: 0;
-  z-index: 1;
-  background-color: #fff;
-  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.25);
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  height: 44px;
+  padding: 10px 20px;
+}
+
+.item + .item {
+  content: "";
+  border-left: 1px solid darkgray;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+}
+
+.title {
+  margin-right: 10px;
 }
 
 .icon {
@@ -70,18 +90,23 @@ export default {
   position: relative;
 }
 
+.icon svg {
+  width: 100%;
+  height: 100%;
+}
+
 .icon:hover {
   background-color: #f4f4f4;
 }
 
 /* DARK MODE */
-.dark .header-container {
-  background-color: #1c2938;
-}
-.dark .header-container h2 {
+.dark .header-container h3 {
   color: #f4f4f4;
 }
 .dark .icon:hover {
-  background-color: #10171e;
+  background-color: #1c2938;
+}
+.dark .item + .item {
+  border-left: 1px solid white;
 }
 </style>
