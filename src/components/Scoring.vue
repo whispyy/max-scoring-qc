@@ -1,6 +1,6 @@
 <template>
   <div class="scoring">
-    <score-bar :dark="dark" :title="board.name"></score-bar>
+    <score-bar :dark="dark" :board="board"></score-bar>
     <draggable
       class="list"
       v-model="list"
