@@ -2,11 +2,25 @@
   <div class="header" :class="{ dark: dark }">
     <div class="header-container">
       <div class="item">
-        <h3 class="title">{{ title }}</h3>
-        <div class="icon" @click="$modal.show('edit-title')">
+        <h3 class="title" v-if="!editMode">{{ board.name }}</h3>
+
+        <input
+          class="edit"
+          type="text"
+          v-if="editMode"
+          v-model="board.name"
+          v-on:keyup.enter="edit(board)"
+        />
+
+        <div class="icon" v-if="!editMode" @click="editMode = true">
           <img src="@/assets/icon/pencil.svg" />
         </div>
+
+        <div class="icon" v-if="editMode" @click="edit(board)">
+          <img src="@/assets/icon/checked.svg" />
+        </div>
       </div>
+
       <div class="item">
         <div class="icon" @click="$modal.show('item-add-edit')">
           <img src="@/assets/icon/add.svg" />
@@ -28,10 +42,23 @@ import store from "@/store";
 export default {
   name: "score-bar",
   props: {
-    title: String,
+    board: {
+      id: String,
+      name: String,
+      desc: String
+    },
     dark: Boolean
   },
+  data() {
+    return {
+      editMode: false
+    };
+  },
   methods: {
+    edit(board) {
+      this.editMode = false;
+      store.commit("editActiveBoard", board);
+    },
     close() {
       store.commit("closeBoard");
     }
@@ -66,6 +93,19 @@ export default {
   margin-right: 10px;
 }
 
+.edit {
+  box-sizing: border-box;
+  margin-bottom: 4px;
+  font-size: 12px;
+  line-height: 2;
+  border: 0;
+  border-bottom: 1px solid #dddedf;
+  padding: 4px 8px;
+  font-family: inherit;
+  transition: 0.5s all;
+  outline: none;
+}
+
 .icon {
   padding: 6px;
   width: 28px;
@@ -75,9 +115,12 @@ export default {
   position: relative;
 }
 
-.icon svg {
+.icon img {
   width: 100%;
   height: 100%;
+  /* darkgray color */
+  filter: invert(73%) sepia(8%) saturate(14%) hue-rotate(359deg) brightness(90%)
+    contrast(93%);
 }
 
 .icon:hover {
@@ -93,5 +136,9 @@ export default {
 }
 .dark .item + .item {
   border-left: 1px solid white;
+}
+
+.dark .edit {
+  color: white;
 }
 </style>

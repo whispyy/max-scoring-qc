@@ -24,6 +24,11 @@ export default new Vuex.Store({
     activeBoard(state, { id, name, desc }) {
       state.activeBoard = { id, name, desc };
     },
+    editActiveBoard(state, { id, name, desc }) {
+      state.activeBoard = { id, name, desc };
+      const index = state.boards.findIndex(item => item.id === id);
+      Vue.set(state.boards, index, { id, name, desc });
+    },
     closeBoard(state) {
       state.activeBoard = null;
     },

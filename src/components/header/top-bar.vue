@@ -70,6 +70,12 @@ export default {
   position: relative;
 }
 
+.icon img {
+  /* darkgray color */
+  filter: invert(73%) sepia(8%) saturate(14%) hue-rotate(359deg) brightness(90%)
+    contrast(93%);
+}
+
 .icon:hover {
   background-color: #f4f4f4;
 }
