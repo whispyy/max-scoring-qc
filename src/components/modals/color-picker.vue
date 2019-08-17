@@ -35,7 +35,7 @@ export default {
   data() {
     return {
       item: null,
-      colors: ["#d11141", "#00b159", "#00aedb", "#f37735", "#ffc425"]
+      colors: ["#d11141", "#f37735", "#ffc425", "#00b159", "#00aedb"]
     };
   }
 };

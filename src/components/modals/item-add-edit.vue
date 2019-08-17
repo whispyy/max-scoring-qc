@@ -15,7 +15,7 @@
           <input
             type="number"
             min="0"
-            max="10"
+            max="100"
             placeholder="Score"
             v-model="item.score"
           />
