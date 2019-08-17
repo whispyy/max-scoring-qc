@@ -95,12 +95,10 @@ export default {
 
 .edit {
   box-sizing: border-box;
-  margin-bottom: 4px;
-  font-size: 12px;
+  font-size: 16px;
   line-height: 2;
   border: 0;
   border-bottom: 1px solid #dddedf;
-  padding: 4px 8px;
   font-family: inherit;
   transition: 0.5s all;
   outline: none;

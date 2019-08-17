@@ -10,6 +10,9 @@
     >
       <div v-for="item in list" :key="item.id">
         <item :dark="dark" :item="item">
+          <button @click="$modal.show('item-preview', { item })">
+            Preview
+          </button>
           <button @click="$modal.show('color-picker', { item })">
             Set color
           </button>
@@ -21,6 +24,7 @@
 
     <!-- BEGIN modals declarations -->
     <item-add-edit @save="addEditList"></item-add-edit>
+    <item-preview></item-preview>
     <color-picker @update="updateColor"></color-picker>
     <!-- END modals declarations -->
   </div>
@@ -30,7 +34,7 @@
 import draggable from "vuedraggable";
 import { scoreBar } from "@/components/header";
 import { item } from "@/components/list";
-import { colorPicker, itemAddEdit } from "@/components/modals";
+import { colorPicker, itemAddEdit, itemPreview } from "@/components/modals";
 import store from "../store";
 
 export default {
@@ -40,6 +44,7 @@ export default {
     item,
     colorPicker,
     itemAddEdit,
+    itemPreview,
     scoreBar
   },
   props: {
