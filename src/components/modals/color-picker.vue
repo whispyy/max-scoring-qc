@@ -2,7 +2,7 @@
   <modal name="color-picker" @before-open="beforeOpen" :adaptive="true">
     <div class="close" @click="hide()"></div>
     <div class="container">
-      <h2>Pick a color</h2>
+      <h2>Flag color</h2>
       <div class="palette">
         <div
           class="color"

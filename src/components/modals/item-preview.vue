@@ -8,18 +8,15 @@
     <div class="close" @click="hide()"></div>
     <div class="container">
       <h2>Item preview</h2>
-      <div>
-        <div class="row">
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.desc }}</p>
-        </div>
-      </div>
+      <item expand :item="item"></item>
     </div>
   </modal>
 </template>
 
 <script>
+import { item } from "@/components/list";
 export default {
+  components: { item },
   name: "item-preview",
   data() {
     return {
@@ -74,15 +71,7 @@ export default {
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   height: calc(100% - 20px);
   margin: 10px;
-}
-
-.row {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  margin: 10px 0;
 }
 </style>

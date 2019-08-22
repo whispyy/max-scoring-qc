@@ -1,7 +1,7 @@
 <template>
   <div
     class="item"
-    :class="{ dark: dark }"
+    :class="{ dark, expand }"
     :style="{ borderTopColor: item.color }"
   >
     <div class="container">
@@ -10,7 +10,7 @@
       </div>
       <div class="content">
         <h3 class="title">{{ item.title }}</h3>
-        <p class="description">{{ item.desc }}</p>
+        <p class="description" :class="{ shorten: !expand }">{{ item.desc }}</p>
       </div>
       <div class="side" @click.stop="toggleSideMenu()">
         <svg viewBox="0 0 24 24" class="icon">
@@ -37,6 +37,7 @@ export default {
   },
   props: {
     dark: Boolean,
+    expand: Boolean,
     item: {
       title: String,
       desc: String,
@@ -90,7 +91,7 @@ export default {
 .content {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: calc(100% - 108px);
   padding: 12px 0;
 }
 
@@ -101,6 +102,12 @@ export default {
 
 .content .description {
   margin: 0;
+}
+
+.shorten {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .side {
@@ -123,6 +130,20 @@ export default {
 .side .icon {
   width: 16px;
   height: 16px;
+}
+
+/* EXPANDED MODE */
+.expand .container {
+  min-height: 100px;
+  align-items: flex-start;
+}
+
+.expand .container .side {
+  display: none;
+}
+
+.expand .content {
+  width: 100%;
 }
 
 /* DARK MODE */
