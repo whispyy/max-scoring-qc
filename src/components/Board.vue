@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import { actionButton, blankstate } from "@/components/utils";
 import { boardAdd } from "@/components/modals";
 import store from "../store";
@@ -59,6 +60,11 @@ export default {
         store.commit("setBoards", value);
       }
     }
+  },
+  mounted() {
+    axios
+      .get("https://localhost:3030/boards")
+      .then(response => this.boards.set(response));
   },
   methods: {
     create(board) {
