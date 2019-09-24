@@ -1,3 +1,4 @@
+import axios from "axios";
 import Vue from "vue";
 import Vuex from "vuex";
 import VModal from "vue-js-modal";
@@ -17,17 +18,18 @@ export default new Vuex.Store({
     setBoards(state, boards) {
       state.boards = boards;
     },
-    addBoard(state, { name, desc }) {
+    addBoard(state, { title, description }) {
       const id = `board-${state.boards.length}`;
-      state.boards.push({ name, desc, id });
+      state.boards.push({ title, description, id });
+      axios.post(`http://localhost:3030/boards`, { title, description });
     },
-    activeBoard(state, { id, name, desc }) {
-      state.activeBoard = { id, name, desc };
+    activeBoard(state, { id, title, description }) {
+      state.activeBoard = { id, title, description };
     },
-    editActiveBoard(state, { id, name, desc }) {
-      state.activeBoard = { id, name, desc };
+    editActiveBoard(state, { id, title, description }) {
+      state.activeBoard = { id, title, description };
       const index = state.boards.findIndex(item => item.id === id);
-      Vue.set(state.boards, index, { id, name, desc });
+      Vue.set(state.boards, index, { id, title, description });
     },
     closeBoard(state) {
       state.activeBoard = null;

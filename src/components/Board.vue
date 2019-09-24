@@ -22,8 +22,8 @@
           :key="board.id"
           @click="selectActive(board)"
         >
-          <h3>{{ board.name }}</h3>
-          <p>{{ board.desc }}</p>
+          <h3>{{ board.title }}</h3>
+          <p>{{ board.description }}</p>
         </div>
       </div>
     </div>
@@ -56,15 +56,14 @@ export default {
         return store.state.boards;
       },
       set(value) {
-        // put here call to retrieve available board
         store.commit("setBoards", value);
       }
     }
   },
   mounted() {
     axios
-      .get("https://localhost:3030/boards")
-      .then(response => this.boards.set(response));
+      .get("http://localhost:3030/boards")
+      .then(({ data }) => (this.boards = data.data));
   },
   methods: {
     create(board) {
