@@ -35,7 +35,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import { actionButton, blankstate } from "@/components/utils";
 import { boardAdd } from "@/components/modals";
 import store from "../store";
@@ -61,9 +60,7 @@ export default {
     }
   },
   mounted() {
-    axios
-      .get("http://localhost:3030/boards")
-      .then(({ data }) => (this.boards = data.data));
+    this.$store.dispatch("loadBoards");
   },
   methods: {
     create(board) {
@@ -113,6 +110,7 @@ export default {
 .board-tile h3 {
   color: white;
   font-weight: 600;
+  width: 100%;
 }
 
 .board-tile p {

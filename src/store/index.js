@@ -1,7 +1,7 @@
-import axios from "axios";
 import Vue from "vue";
 import Vuex from "vuex";
 import VModal from "vue-js-modal";
+import axios from "axios";
 
 Vue.use(Vuex);
 Vue.use(VModal);
@@ -13,6 +13,11 @@ export default new Vuex.Store({
     activeBoard: null,
     list: []
   },
+  actions: {
+    loadBoards({ commit }) {
+      axios.get("/boards").then(({ data }) => commit("setBoards", data.data));
+    }
+  },
   mutations: {
     // board part
     setBoards(state, boards) {
@@ -21,7 +26,7 @@ export default new Vuex.Store({
     addBoard(state, { title, description }) {
       const id = `board-${state.boards.length}`;
       state.boards.push({ title, description, id });
-      axios.post(`http://localhost:3030/boards`, { title, description });
+      axios.post(`/boards`, { title, description });
     },
     activeBoard(state, { id, title, description }) {
       state.activeBoard = { id, title, description };
@@ -30,6 +35,7 @@ export default new Vuex.Store({
       state.activeBoard = { id, title, description };
       const index = state.boards.findIndex(item => item.id === id);
       Vue.set(state.boards, index, { id, title, description });
+      axios.patch(`/boards/${id}`, { title, description });
     },
     closeBoard(state) {
       state.activeBoard = null;
