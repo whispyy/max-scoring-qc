@@ -37,7 +37,6 @@
 <script>
 import { actionButton, blankstate } from "@/components/utils";
 import { boardAdd } from "@/components/modals";
-import store from "../store";
 
 export default {
   name: "Board",
@@ -52,10 +51,10 @@ export default {
   computed: {
     boards: {
       get() {
-        return store.state.boards;
+        return this.$store.state.boards;
       },
       set(value) {
-        store.commit("setBoards", value);
+        this.$store.commit("setBoards", value);
       }
     }
   },
@@ -64,10 +63,10 @@ export default {
   },
   methods: {
     create(board) {
-      store.commit("addBoard", board);
+      this.$store.dispatch("addBoard", board);
     },
     selectActive(board) {
-      store.commit("activeBoard", board);
+      this.$store.commit("activeBoard", board);
     }
   }
 };

@@ -16,6 +16,12 @@ export default new Vuex.Store({
   actions: {
     loadBoards({ commit }) {
       axios.get("/boards").then(({ data }) => commit("setBoards", data.data));
+    },
+    addBoard({ commit }, board) {
+      const { title, description } = board;
+      axios
+        .post(`/boards`, { title, description })
+        .then(({ data }) => commit("addBoard", data));
     }
   },
   mutations: {
@@ -23,10 +29,8 @@ export default new Vuex.Store({
     setBoards(state, boards) {
       state.boards = boards;
     },
-    addBoard(state, { title, description }) {
-      const id = `board-${state.boards.length}`;
-      state.boards.push({ title, description, id });
-      axios.post(`/boards`, { title, description });
+    addBoard(state, { id, title, description }) {
+      state.boards.push({ id, title, description });
     },
     activeBoard(state, { id, title, description }) {
       state.activeBoard = { id, title, description };
